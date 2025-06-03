@@ -1,0 +1,12 @@
+part of 'home_bloc.dart';
+
+@immutable
+sealed class HomeEvent {}
+
+class HomeAddToCartClickedEvent extends HomeEvent {}
+
+class HomeAddToWishlistClickedEvent extends HomeEvent {}
+
+class HomeNavigateToCartClickedEvent extends HomeEvent {}
+
+class HomeNavigateToWishlistClickedEvent extends HomeEvent {}
