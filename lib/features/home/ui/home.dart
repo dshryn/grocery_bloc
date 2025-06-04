@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery_bloc/features/cart/ui/cart.dart';
 import 'package:grocery_bloc/features/home/bloc/home_bloc.dart';
+import 'package:grocery_bloc/features/wishlist/ui/wishlist.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,6 +12,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    homeBloc.add(HomeInitialEvent());
+    super.initState();
+  }
+
   final HomeBloc homeBloc = HomeBloc();
 
   @override
@@ -18,29 +26,105 @@ class _HomeState extends State<Home> {
       bloc: homeBloc,
       listenWhen: (previous, current) => current is HomeActionState,
       buildWhen: (previous, current) => current is! HomeActionState,
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is HomeNavigateToWishlistPageActionState) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Wishlist()));
+        } else if (state is HomeNavigateToCartPageActionState) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Cart()));
+        }
+      },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Groceries'),
-            backgroundColor: const Color.fromARGB(255, 129, 230, 171),
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    homeBloc.add(HomeNavigateToWishlistClickedEvent());
-                  },
-                  icon: Icon(Icons.favorite_outline_rounded)),
-              IconButton(
-                  onPressed: () {
-                    homeBloc.add(HomeNavigateToCartClickedEvent());
-                  },
-                  icon: Icon(Icons.shopping_cart_outlined)),
-            ],
-          ),
-          body: const Center(
-            child: Text('Welcome to the Grocery App!'),
-          ),
-        );
+        if (state is HomeLoadingState) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Groceries'),
+              backgroundColor: const Color.fromARGB(255, 129, 230, 171),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      homeBloc.add(HomeNavigateToWishlistClickedEvent());
+                    },
+                    icon: Icon(Icons.favorite_outline_rounded)),
+                IconButton(
+                    onPressed: () {
+                      homeBloc.add(HomeNavigateToCartClickedEvent());
+                    },
+                    icon: Icon(Icons.shopping_cart_outlined)),
+              ],
+            ),
+            body: const Center(
+              child: CircularProgressIndicator(
+                color: Color.fromARGB(255, 129, 230, 171),
+              ),
+            ),
+          );
+        } else if (state is HomeLoadingFailureState) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Groceries'),
+              backgroundColor: const Color.fromARGB(255, 129, 230, 171),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      homeBloc.add(HomeNavigateToWishlistClickedEvent());
+                    },
+                    icon: Icon(Icons.favorite_outline_rounded)),
+                IconButton(
+                    onPressed: () {
+                      homeBloc.add(HomeNavigateToCartClickedEvent());
+                    },
+                    icon: Icon(Icons.shopping_cart_outlined)),
+              ],
+            ),
+            body: const Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.error,
+                    size: 48,
+                    color: Colors.red,
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Error!',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        } else if (state is HomeLoadedSuccessState) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Groceries'),
+              backgroundColor: const Color.fromARGB(255, 129, 230, 171),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      homeBloc.add(HomeNavigateToWishlistClickedEvent());
+                    },
+                    icon: Icon(Icons.favorite_outline_rounded)),
+                IconButton(
+                    onPressed: () {
+                      homeBloc.add(HomeNavigateToCartClickedEvent());
+                    },
+                    icon: Icon(Icons.shopping_cart_outlined)),
+              ],
+            ),
+            body: const Center(
+              child: Text('Grocery'),
+            ),
+          );
+        } else {
+          return SizedBox();
+        }
       },
     );
   }
