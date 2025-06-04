@@ -15,14 +15,27 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      bloc: homeBloc,
+      listenWhen: (previous, current) => current is HomeActionState,
+      buildWhen: (previous, current) => current is! HomeActionState,
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Groceries'),
             backgroundColor: const Color.fromARGB(255, 129, 230, 171),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    homeBloc.add(HomeNavigateToWishlistClickedEvent());
+                  },
+                  icon: Icon(Icons.favorite_outline_rounded)),
+              IconButton(
+                  onPressed: () {
+                    homeBloc.add(HomeNavigateToCartClickedEvent());
+                  },
+                  icon: Icon(Icons.shopping_cart_outlined)),
+            ],
           ),
           body: const Center(
             child: Text('Welcome to the Grocery App!'),

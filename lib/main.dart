@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_bloc/features/home/ui/home_pg.dart';
+import 'package:grocery_bloc/features/home/ui/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePg(),
+      home: const Home(),
     );
   }
 }
