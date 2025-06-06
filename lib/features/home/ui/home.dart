@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_bloc/features/cart/ui/cart.dart';
 import 'package:grocery_bloc/features/home/bloc/home_bloc.dart';
+import 'package:grocery_bloc/features/home/ui/product_tile.dart';
 import 'package:grocery_bloc/features/wishlist/ui/wishlist.dart';
 
 class Home extends StatefulWidget {
@@ -33,6 +34,12 @@ class _HomeState extends State<Home> {
         } else if (state is HomeNavigateToCartPageActionState) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Cart()));
+        } else if (state is HomeAppendCartActionState) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Item Carted')));
+        } else if (state is HomeAppendWishlistActionState) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Item Wishlisted')));
         }
       },
       builder: (context, state) {
@@ -101,6 +108,7 @@ class _HomeState extends State<Home> {
             ),
           );
         } else if (state is HomeLoadedSuccessState) {
+          final successState = state;
           return Scaffold(
             appBar: AppBar(
               title: const Text('Groceries'),
@@ -118,9 +126,13 @@ class _HomeState extends State<Home> {
                     icon: Icon(Icons.shopping_cart_outlined)),
               ],
             ),
-            body: const Center(
-              child: Text('Grocery'),
-            ),
+            body: ListView.builder(
+                itemCount: successState.products.length,
+                itemBuilder: (context, index) {
+                  return ProductTileWidget(
+                      homeBloc: homeBloc,
+                      productDataModel: successState.products[index]);
+                }),
           );
         } else {
           return SizedBox();

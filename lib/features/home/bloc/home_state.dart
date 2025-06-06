@@ -20,3 +20,19 @@ class HomeLoadedSuccessState extends HomeState {
 class HomeNavigateToWishlistPageActionState extends HomeActionState {}
 
 class HomeNavigateToCartPageActionState extends HomeActionState {}
+
+class HomeAppendWishlistActionState extends HomeActionState {}
+
+class HomeAppendCartActionState extends HomeActionState {}
+
+class HomeRemoveFromWishlistActionState extends HomeActionState {
+  final ProductDataModel removedProduct;
+
+  HomeRemoveFromWishlistActionState({required this.removedProduct});
+}
+
+class HomeRemoveFromCartActionState extends HomeActionState {
+  final ProductDataModel removedProduct;
+
+  HomeRemoveFromCartActionState({required this.removedProduct});
+}

@@ -2,34 +2,81 @@ class GrocData {
   static List<Map<String, dynamic>> grocProducts = [
     {
       'id': '1',
-      'name': 'Bananas',
-      'description': 'Fresh bananas from Ecuador',
-      'price': 15,
+      'name': 'Almonds',
+      'description': 'Crunchy and nutritious raw almonds.',
+      'price': 250,
       'imageUrl':
-          'https://cdn.shopify.com/s/files/1/0258/4307/3103/products/asset_2_800x.jpg?v=1571839043',
+          'https://www.istockphoto.com/photo/almond-gm171292794-20685082',
     },
     {
       'id': '2',
-      'name': 'Grapes',
-      'description': 'Organic, locally grown apples',
-      'price': 100,
-      'imageUrl':
-          'https://www.jiomart.com/images/product/original/590000452/sharad-seedless-grapes-1-kg-product-images-o590000452-p590116963-0-202203171004.jpg',
+      'name': 'Broccoli',
+      'description': 'Fresh green broccoli florets.',
+      'price': 60,
+      'imageUrl': 'https://pixabay.com/photos/brocolli-mushroom-soup-2710624/',
     },
     {
       'id': '3',
-      'name': 'Bread',
-      'description': 'Brown Bread, Tasty',
-      'price': 40,
-      'imageUrl': 'https://thumbs.dreamstime.com/b/bread-cut-14027607.jpg',
+      'name': 'Wheat Flour',
+      'description': 'Organic whole wheat flour.',
+      'price': 500,
+      'imageUrl': 'https://pixabay.com/photos/bread-wheat-flour-food-6486963/',
     },
     {
       'id': '4',
-      'name': 'Brown Eggs',
-      'description': 'Farm-fresh brown eggs',
+      'name': 'Yogurt',
+      'description': 'Creamy and thick yogurt.',
       'price': 80,
       'imageUrl':
-          'https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg',
+          'https://pixabay.com/photos/yogurt-strawberries-food-fruit-1442034/',
+    },
+    {
+      'id': '5',
+      'name': 'Orange',
+      'description': 'Fresh oranges',
+      'price': 90,
+      'imageUrl':
+          'https://cdn.pixabay.com/photo/2017/01/20/15/06/orange-juice-1995056_1280.jpg',
+    },
+    {
+      'id': '6',
+      'name': 'Avocados',
+      'description': 'Ripe and creamy avocados.',
+      'price': 150,
+      'imageUrl':
+          'https://www.istockphoto.com/photo/fresh-avocados-in-a-vintage-dish-on-the-table-gm1322140235-408193916',
+    },
+    {
+      'id': '7',
+      'name': 'Brinjal',
+      'description': 'Fresh organic brinjal.',
+      'price': 200,
+      'imageUrl':
+          'https://www.istockphoto.com/photo/whole-eggplant-on-wooden-background-gm1328668312-412650240',
+    },
+    {
+      'id': '8',
+      'name': 'Spinach',
+      'description': 'Fresh organic spinach leaves.',
+      'price': 40,
+      'imageUrl':
+          'https://pixabay.com/photos/spinach-leaf-spinach-vegetables-3463248/',
+    },
+    {
+      'id': '9',
+      'name': 'Rice',
+      'description': 'Whole grain rice.',
+      'price': 70,
+      'imageUrl':
+          'https://pixabay.com/photos/rice-rice-grains-food-meal-3505977/',
+    },
+    {
+      'id': '10',
+      'name': 'Honey',
+      'description': 'Pure natural honey.',
+      'price': 120,
+      'imageUrl':
+          'https://pixabay.com/photos/honey-extractor-honey-cute-yummy-1568943/',
     },
   ];
 }
